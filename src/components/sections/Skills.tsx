@@ -1,5 +1,5 @@
 import { skills } from "@/data/skills"
-import { Badge } from "@/components/ui/badge"
+import { SkillLogo } from "@/components/icons/SkillLogo"
 
 const categories = [
   { key: "frontend", label: "Frontend" },
@@ -35,13 +35,19 @@ export function Skills() {
                 <h3 className="mb-3 text-sm font-medium text-muted-foreground">
                   {category.label}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                   {items.map((skill) => (
-                    <Badge key={skill.name} variant="secondary">
-                      {skill.name}
-                    </Badge>
+                    <li
+                      key={skill.name}
+                      className="flex flex-col items-center gap-3 rounded-xl border border-border/60 bg-card/60 px-3 py-5 text-center"
+                    >
+                      <SkillLogo icon={skill.icon} className="size-9" />
+                      <span className="text-sm font-medium text-foreground">
+                        {skill.name}
+                      </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )
           })}

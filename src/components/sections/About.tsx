@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-
 export function About() {
   return (
     <section className="px-6 py-20" aria-labelledby="about-heading">
@@ -24,11 +21,6 @@ export function About() {
             Texto placeholder — substitua por sua história real, objetivos e
             contexto profissional.
           </p>
-        </div>
-        <div className="mt-8">
-          <Button asChild variant="outline">
-            <Link to="/sobre">Saiba mais</Link>
-          </Button>
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react"
+
 export type ProjectType = "personal" | "professional"
 
 export interface Project {
@@ -19,9 +21,14 @@ export interface Project {
   learnings: string[]
 }
 
+export type SkillIcon =
+  | { type: "brand"; path: string; color: string }
+  | { type: "lucide"; icon: LucideIcon }
+
 export interface Skill {
   name: string
   category: "frontend" | "backend" | "tools" | "other"
+  icon: SkillIcon
 }
 
 export interface ExperienceItem {
