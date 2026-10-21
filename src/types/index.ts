@@ -31,11 +31,12 @@ export interface Skill {
   icon: SkillIcon
 }
 
+export type ExperienceKind = "principal" | "complementar"
+
 export interface ExperienceItem {
   id: string
-  company: string
   role: string
+  kind: ExperienceKind
   period: string
-  description: string
-  technologies: string[]
+  details: string[]
 }

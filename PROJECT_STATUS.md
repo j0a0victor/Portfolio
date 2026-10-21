@@ -48,7 +48,7 @@ Status refere-se à UI/funcionalidade implementada. O conteúdo ainda é placeho
 | Contato | `/contato` | Concluído | Renderiza a seção `Contact`: só ícones de e-mail, GitHub e LinkedIn com links. Sem formulário. |
 | Rota desconhecida | `*` | Concluído | Redireciona para `/`. |
 | Tecnologias | seção da home | Concluído | 13 tecnologias em Frontend (6), Backend (5: Node.js, Python, Django, PostgreSQL, REST APIs) e Ferramentas (2: Git, Vite). Cada cartão tem o logo acima do nome. |
-| Experiência | seção da home | Concluído | Cartões a partir de `experience.ts` (2 itens fictícios). Não tem página própria. |
+| Experiência | seção da home | Concluído | 2 cartões a partir de `experience.ts`: Estagiário de Desenvolvimento de Software (tag verde "Experiência principal", com destaque) e Suporte Técnico de TI (tag cinza "Experiência complementar"). Não tem página própria. |
 
 ## Componentes principais
 
@@ -69,6 +69,7 @@ Status refere-se à UI/funcionalidade implementada. O conteúdo ainda é placeho
 - Alias `@/` → `src/` (Vite e tsconfig).
 - Projeto do tipo `professional` é sempre tratado como privado: `project.private || type === "professional"` oculta GitHub/Demo.
 - Logos via `simple-icons` com imports nomeados (tree-shaking). O helper `brand()` em `skills.ts` usa a cor oficial, com override de contraste no fundo escuro: CSS `#9966CC` e Django `#44B78B`. "REST APIs" usa o ícone `Network` do lucide, por não ter logo de marca.
+- Experiência: `ExperienceItem` tem `role`, `kind` (`principal` | `complementar`), `period` e `details`. O `kind` define a tag e o destaque do cartão (principal: tag verde e contorno verde; complementar: tag cinza). Não há empresa nem tecnologias, porque os dados do usuário não incluem esses campos.
 - Decisões do usuário a preservar:
   - Ordem da home: Hero primeiro, depois Sobre mim e Experiência, e as demais seções na ordem original.
   - Contato sem formulário, apenas ícones. O footer não tem links de contato.
@@ -96,7 +97,8 @@ Status refere-se à UI/funcionalidade implementada. O conteúdo ainda é placeho
 ## Problemas conhecidos
 
 - **Conteúdo placeholder:**
-  - Textos de Hero, Sobre e Experiência.
+  - Textos de Hero e Sobre.
+  - Experiência: os tópicos genéricos do estágio ("Tecnologias utilizadas no desenvolvimento.", "Sistemas e funcionalidades em que trabalhou.", "Conhecimentos técnicos adquiridos.") ainda não têm detalhes reais. Nenhuma das duas experiências informa a empresa.
   - Projetos com links `example.com` / `github.com/example` e a mesma imagem `project-placeholder.svg`.
   - Contato com `mailto:contato@exemplo.com` e links genéricos de `github.com` e `linkedin.com`.
 - **Contato:** não há formulário nem envio de mensagens. Só ícones com links.
@@ -112,7 +114,7 @@ Status refere-se à UI/funcionalidade implementada. O conteúdo ainda é placeho
 
 ## Próximos passos
 
-1. Trocar o conteúdo placeholder por dados reais: textos, experiência, projetos e links de contato.
+1. Trocar o conteúdo placeholder por dados reais: textos, projetos, links de contato e os detalhes do estágio (tecnologias, sistemas e conhecimentos adquiridos).
 2. Adicionar screenshots reais dos projetos em `public/images` e apontar em `projects.ts`.
 3. Substituir o README pela documentação do projeto.
 4. Decidir se os arquivos sem uso (assets do template, `ui/input`, `ui/textarea`, `ui/separator`) serão removidos.

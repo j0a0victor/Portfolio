@@ -1,6 +1,24 @@
 import { experiences } from "@/data/experience"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
+import type { ExperienceKind } from "@/types"
+
+const kinds: Record<
+  ExperienceKind,
+  { label: string; badgeClassName: string; cardClassName: string }
+> = {
+  principal: {
+    label: "Experiência principal",
+    badgeClassName: "bg-green-500/15 text-green-500",
+    cardClassName: "bg-card/80 ring-green-500/30",
+  },
+  complementar: {
+    label: "Experiência complementar",
+    badgeClassName: "bg-secondary text-secondary-foreground",
+    cardClassName: "border-border/60 bg-card/60",
+  },
+}
 
 export function Experience() {
   return (
@@ -12,37 +30,32 @@ export function Experience() {
         >
           Experiência
         </h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          Itens fictícios apenas para validar a interface. Substitua pelos seus
-          dados reais depois.
-        </p>
 
         <div className="mt-10 space-y-4">
-          {experiences.map((item) => (
-            <Card key={item.id} className="border-border/60 bg-card/60">
-              <CardHeader className="gap-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
+          {experiences.map((item) => {
+            const kind = kinds[item.kind]
+
+            return (
+              <Card key={item.id} className={kind.cardClassName}>
+                <CardHeader className="gap-3">
                   <CardTitle className="text-lg">{item.role}</CardTitle>
-                  <span className="text-sm text-muted-foreground">
-                    {item.period}
-                  </span>
-                </div>
-                <p className="text-sm text-primary">{item.company}</p>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {item.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <Badge
+                    className={cn("font-semibold", kind.badgeClassName)}
+                  >
+                    {kind.label}
+                  </Badge>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+                    <li>{`Período: ${item.period}.`}</li>
+                    {item.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

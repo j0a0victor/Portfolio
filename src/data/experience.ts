@@ -1,23 +1,28 @@
 import type { ExperienceItem } from "@/types"
 
-/** Dados fictícios apenas para desenvolver a UI. Não representam experiência real. */
 export const experiences: ExperienceItem[] = [
   {
     id: "1",
-    company: "Empresa Demo Alpha",
-    role: "Desenvolvedor Full Stack",
-    period: "2024 — Atual",
-    description:
-      "Participação fictícia em produtos web internos, com foco em interfaces React e APIs REST.",
-    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    role: "Estagiário de Desenvolvimento de Software",
+    kind: "principal",
+    period: "10 meses",
+    details: [
+      "Tecnologias utilizadas no desenvolvimento.",
+      "Sistemas e funcionalidades em que trabalhou.",
+      "Participação em correções, melhorias e implementação de funcionalidades.",
+      "Conhecimentos técnicos adquiridos.",
+    ],
   },
   {
     id: "2",
-    company: "Empresa Demo Beta",
-    role: "Desenvolvedor Frontend",
-    period: "2022 — 2024",
-    description:
-      "Experiência fictícia em construção de interfaces responsivas e componentes reutilizáveis.",
-    technologies: ["React", "JavaScript", "CSS", "Git"],
+    role: "Suporte Técnico de TI",
+    kind: "complementar",
+    period: "aproximadamente 1 ano e alguns meses",
+    details: [
+      "Manutenção e diagnóstico de computadores.",
+      "Instalação e configuração de softwares.",
+      "Atendimento e resolução de problemas técnicos.",
+      "Suporte aos usuários.",
+    ],
   },
 ]
